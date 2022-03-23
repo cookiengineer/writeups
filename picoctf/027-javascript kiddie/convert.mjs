@@ -1,8 +1,10 @@
 
-import fs from 'fs';
+import child_process from 'child_process';
+import fs            from 'fs';
 
 
-let shifted_bytes = fs.readFileSync('bytes').toString('utf8').trim().split(' ').map((v) => parseInt(v, 10));
+
+let shifted_bytes = fs.readFileSync('challenge/bytes').toString('utf8').trim().split(' ').map((v) => parseInt(v, 10));
 let shifted_table = [
 	[], [], [], [], [], [], [], [],
 	[], [], [], [], [], [], [], []
@@ -30,7 +32,7 @@ for (let column = 0; column < shifted_table.length; column++) {
 
 }
 
-fs.writeFileSync('bytes.bin', Buffer.from(shifted_bytes));
+fs.writeFileSync('solution/bytes.bin', Buffer.from(shifted_bytes));
 
 if (shift.length === 16) {
 
@@ -54,7 +56,23 @@ if (shift.length === 16) {
 		result = result.slice(0, result.length - 1);
 	}
 
-	fs.writeFileSync('bytes.png', Buffer.from(result));
+	fs.writeFileSync('solution/bytes.png', Buffer.from(result));
+
+
+	let flag = null;
+	try {
+		flag = child_process.spawnSync('zbarimg', [
+			process.cwd() + '/solution/bytes.png'
+		], {
+			cwd: process.cwd() + '/solution'
+		}).stdout;
+	} catch (err) {
+		flag = null;
+	}
+
+	if (flag !== null && flag.length > 0) {
+		console.log('Found Flag! ' + flag.toString('utf8'));
+	}
 
 }
 

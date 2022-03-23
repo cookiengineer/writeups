@@ -1,0 +1,12 @@
+<!doctype html>
+{% if error is not none %}
+  <h3>
+    error: {{ error }}
+  </h3>
+  {% include "errors/" + error + ".html" ignore missing %}
+{% endif %}
+<h2>make a new note</h2>
+<form action="/new" method="POST">
+  <textarea name="content"></textarea>
+  <input type="submit">
+</form>

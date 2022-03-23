@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Who are you?</title>
+
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="https://getbootstrap.com/docs/3.3/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+</head>
+
+<body>
+
+    <div class="container">
+      <div class="jumbotron">
+        <p class="lead"></p>
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12">
+				<h3 style="color:red">I don&#39;t trust users visiting from another site.</h3>
+			</div>
+		</div>
+		<br/>
+		
+			<img src="/static/who_r_u.gif"></img>
+		
+	</div>
+    <footer class="footer">
+        <p>&copy; PicoCTF</p>
+    </footer>
+
+</div>
+<script>
+$(document).ready(function(){
+    $(".close").click(function(){
+        $("myAlert").alert("close");
+    });
+});
+</script>
+</body>
+
+</html>

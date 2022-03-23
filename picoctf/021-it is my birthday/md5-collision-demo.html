@@ -1,0 +1,342 @@
+
+<!-- saved from url=(0047)https://www.mscs.dal.ca/~selinger/md5collision/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><title>Peter Selinger: MD5 Collision Demo</title>
+
+</head><body bgcolor="#ffffff">
+
+<a href="http://www.mathstat.dal.ca/~selinger/software.html">
+<img src="./md5-collision-demo_files/software.gif" align="right" alt="" width="103" height="97" border="0">
+</a>
+<a href="http://www.mathstat.dal.ca/~selinger/">
+ <img src="./md5-collision-demo_files/PS05.gif" align="left" alt="[home]" width="45" height="53" border="0">
+</a>
+<br>
+<center><font size="6"><b>MD5 Collision Demo</b></font></center>
+<br clear="left">
+<hr width="100%">
+
+Published Feb 22, 2006. Last updated Oct 11, 2011.
+
+<h3>Collisions in the MD5 cryptographic hash function</h3>
+
+<table border="0"><tbody><tr><td width="10"></td><td>
+
+It is now well-known that the crytographic hash function MD5 has been
+broken. In March 2005, Xiaoyun Wang and Hongbo Yu of Shandong
+University in China published an <a href="http://www.infosec.sdu.edu.cn/paper/md5-attack.pdf">article</a>
+in which they describe an algorithm that can find two different
+sequences of 128 bytes with the same MD5 hash. One famous such pair is
+the following:
+
+<pre>d131dd02c5e6eec4693d9a0698aff95c2fcab5<font color="red">8</font>712467eab4004583eb8fb7f89 
+55ad340609f4b30283e4888325<font color="red">7</font>1415a085125e8f7cdc99fd91dbd<font color="red">f</font>280373c5b 
+d8823e3156348f5bae6dacd436c919c6dd53e2<font color="red">b</font>487da03fd02396306d248cda0 
+e99f33420f577ee8ce54b67080<font color="red">a</font>80d1ec69821bcb6a8839396f965<font color="red">2</font>b6ff72a70
+</pre>
+and
+<pre>d131dd02c5e6eec4693d9a0698aff95c2fcab5<font color="red">0</font>712467eab4004583eb8fb7f89 
+55ad340609f4b30283e4888325<font color="red">f</font>1415a085125e8f7cdc99fd91dbd<font color="red">7</font>280373c5b 
+d8823e3156348f5bae6dacd436c919c6dd53e2<font color="red">3</font>487da03fd02396306d248cda0 
+e99f33420f577ee8ce54b67080<font color="red">2</font>80d1ec69821bcb6a8839396f965<font color="red">a</font>b6ff72a70 
+</pre>
+
+Each of these blocks has MD5 hash 79054025255fb1a26e4bc422aef54eb4.
+Ben Laurie has a nice website that <a href="http://www.links.org/?p=6" althref="http://web.archive.org/web/20060210033801/http://www.shmoo.com/md5-collision.html">visualizes this MD5
+collision</a>. For a non-technical, though slightly outdated,
+introduction to hash functions, see Steve Friedle's <a href="http://www.unixwiz.net/techtips/iguide-crypto-hashes.html">Illustrated Guide</a>.
+
+</td></tr></tbody></table>
+
+<h3>Exploits</h3>
+
+<table border="0"><tbody><tr><td width="10"></td><td>
+
+As we will explain below, the algorithm of Wang and Yu can be used to
+create files of arbitrary length that have identical MD5 hashes, and
+that differ only in 128 bytes somewhere in the middle of the file.
+Several people have used this technique to create pairs of interesting
+files with identical MD5 hashes:
+
+<ul>
+<li>Magnus Daum and Stefan Lucks have created <a href="http://web.archive.org/web/20071226014140/http://www.cits.rub.de/MD5Collisions/">two PostScript files
+with identical MD5 hash</a>, of which one is a letter of
+recommendation, and the other is a security clearance.
+
+</li><li>Eduardo Diaz has described a <a href="http://www.codeproject.com/dotnet/HackingMd5.asp">scheme</a> by
+which two programs could be packed into two archives with identical
+MD5 hash. A special "extractor" program turns one archive into a "good"
+program and the other into an "evil" one.  
+
+</li><li>In 2007, Marc Stevens, Arjen K. Lenstra, and Benne de Weger used
+an improved version of Wang and Yu's attack known as the <a href="http://www.win.tue.nl/hashclash/SoftIntCodeSign/">chosen prefix
+collision</a> method to produce two executable files with the same MD5
+hash, but different behaviors. Unlike the old method, where the two
+files could only differ in a few carefully chosen bits, the chosen
+prefix method allows two completely arbitrary files to have the same
+MD5 hash, by appending a few thousand bytes at the end of each file.
+(Added Jul 27, 2008).
+
+</li><li>Didier Stevens used the evilize program (below) to create <a href="http://blog.didierstevens.com/2009/01/17/playing-with-authenticode-and-md5-collisions/">two
+different programs with the same Authenticode digital
+signature</a>. Authenticode is Microsoft's code signing mechanism, and
+although it uses SHA1 by default, it still supports MD5. 
+(Added Jan 17, 2009).
+
+</li></ul>
+
+</td></tr></tbody></table>
+
+<h3>An evil pair of executable programs</h3>
+
+<table border="0"><tbody><tr><td width="10"></td><td>
+
+The following is an improvement of Diaz's example, which does not need
+a special extractor. Here are two pairs of executable programs (one
+pair runs on Windows, one pair on Linux).
+<ul>
+<li><b>Windows version:</b>
+<ul>
+<li><a href="https://www.mscs.dal.ca/~selinger/md5collision/hello.exe">hello.exe</a>. MD5 Sum: cdc47d670159eef60916ca03a9d4a007
+</li><li><a href="https://www.mscs.dal.ca/~selinger/md5collision/erase.exe">erase.exe</a>. MD5 Sum: cdc47d670159eef60916ca03a9d4a007
+</li></ul>
+</li><li><b>Linux version (i386):</b>
+<ul>
+<li><a href="https://www.mscs.dal.ca/~selinger/md5collision/hello">hello</a>. MD5 Sum: da5c61e1edc0f18337e46418e48c1290
+</li><li><a href="https://www.mscs.dal.ca/~selinger/md5collision/erase">erase</a>. MD5 Sum: da5c61e1edc0f18337e46418e48c1290
+</li></ul>
+</li></ul>
+
+These programs must be run from the console. Here is what happens if
+you run them:
+
+<p>
+<table bgcolor="black" width="100%">
+<tbody><tr><td><font color="white"><pre>C:\TEMP&gt; md5sum hello.exe
+cdc47d670159eef60916ca03a9d4a007
+C:\TEMP&gt; .\hello.exe
+Hello, world!
+
+(press enter to quit)
+C:\TEMP&gt; 
+</pre></font></td></tr></tbody></table>
+</p><p>
+
+</p><p>
+<table bgcolor="black" width="100%">
+<tbody><tr><td><font color="white"><pre>C:\TEMP&gt; md5sum erase.exe
+cdc47d670159eef60916ca03a9d4a007
+C:\TEMP&gt; .\erase.exe
+This program is evil!!!
+Erasing hard drive...1Gb...2Gb... just kidding!
+Nothing was erased.
+
+(press enter to quit)
+C:\TEMP&gt; 
+</pre></font></td></tr></tbody></table>
+</p><p>
+
+</p></td></tr></tbody></table>
+
+<h3>How it works</h3>
+
+<table border="0"><tbody><tr><td width="10"></td><td>
+
+The above files were generated by exploiting two facts: the block
+structure of the MD5 function, and the fact that Wang and Yu's
+technique works for an arbitrary initialization vector. To understand
+what this means, it is useful to have a general idea of how the MD5
+function processes its input. This is done by an iteration method
+known as the Merkle-Damgard method. A given input file is first padded
+so that its length will be a multiple of 64 bytes. It is then divided
+into individual 64-byte blocks <i>M</i><sub>0</sub>,
+<i>M</i><sub>1</sub>, ..., <i>M</i><sub><i>n</i>-1</sub>. The MD5 hash
+is computed by computing a sequence of 16-byte
+<b>states</b> <i>s</i><sub><i></i>0</sub>, ...,
+<i>s</i><sub><i>n</i></sub>, according to the rule:
+<nobr><i>s</i><sub><i>i</i>+1</sub> = <i>f</i>(<i>s</i><sub><i>i</i></sub>,
+<i>M<sub>i</sub></i>)</nobr>, where <i>f</i> is a certain fixed (and
+complicated) function. Here, the initial state <i>s</i><sub>0</sub> is
+fixed, and is called the <b>initialization vector</b>.  The final
+state <i>s</i><sub><i>n</i></sub> is the computed MD5 hash.
+
+<p>
+
+The method of Wang and Yu makes it possible, for a given
+initialization vector
+<i>s</i>, to find two pairs of blocks <font color="red"><i>M</i>,<i>M</i>'</font> and <font color="red"><i>N</i>,<i>N</i>'</font>, such that
+<i>f</i>(<i>f</i>(<i>s</i>, <font color="red"><i>M</i></font>), <font color="red"><i>M</i>'</font>)
+=
+<i>f</i>(<i>f</i>(<i>s</i>, <font color="red"><i>N</i></font>), <font color="red"><i>N</i>'</font>).  It is important that this works for any
+initialization vector <i>s</i>, and not just for the standard
+initialization vector <i>s</i><sub>0</sub>.
+
+</p><p>
+
+Combining these observations, it is possible to find pairs of files of
+arbitrary length, which are identical except for 128 bytes somewhere
+in the middle of the file, and which have identical MD5
+hash. Indeed, let us write the two files as sequences of
+64-byte blocks:
+
+</p><p>
+<nobr>
+<i>M</i><sub>0</sub>, 
+<i>M</i><sub>1</sub>, 
+..., 
+<i>M</i><sub><i>i</i>-1</sub>, 
+<font color="red"><i>M</i><sub><i>i</i></sub>,
+<i>M</i><sub><i>i</i>+1</sub></font>, 
+<i>M</i><sub><i>i</i>+2</sub>, 
+...,
+<i>M</i><sub><i>n</i></sub>,
+</nobr>
+</p><p>
+<nobr>
+<i>M</i><sub>0</sub>, 
+<i>M</i><sub>1</sub>, 
+..., 
+<i>M</i><sub><i>i</i>-1</sub>, 
+<font color="red"><i>N</i><sub><i>i</i></sub>, 
+<i>N</i><sub><i>i</i>+1</sub></font>, 
+<i>M</i><sub><i>i</i>+2</sub>, 
+...,
+<i>M</i><sub><i>n</i></sub>.
+</nobr>
+</p><p>
+
+The blocks at the beginning of the files, <i>M</i><sub>0</sub>, ...,
+<i>M</i><sub><i>i</i>-1</sub>, can be chosen arbitrarily. Suppose that
+the internal state of the MD5 hash function after processing these
+blocks is <i>s</i><sub><i>i</i></sub>.  Now we can apply Wang and Yu's
+method to the initialization vector <i>s</i><sub><i>i</i></sub>, to
+find two pairs of blocks <font color="red"><i>M</i><sub><i>i</i></sub>,
+<i>M</i><sub><i>i</i>+1</sub></font> and <font color="red"><i>N</i><sub><i>i</i></sub>,
+<i>N</i><sub><i>i</i>+1</sub></font>, such that 
+
+</p><p>
+<i>s</i><sub><i>i</i>+2</sub>
+=
+<i>f</i>(<i>f</i>(<i>s</i><sub><i>i</i></sub>, <font color="red"><i>M<sub>i</sub></i></font>), <font color="red"><i>M</i><sub><i>i</i>+1</sub></font>) 
+=
+<i>f</i>(<i>f</i>(<i>s</i><sub><i>i</i></sub>, <font color="red"><i>N<sub>i</sub></i></font>), <font color="red"><i>N</i><sub><i>i</i>+1</sub></font>).
+</p><p>
+
+This guarantees that the internal state <i>s</i><sub><i>i</i>+2</sub>
+after the <i>i</i>+2st block will be the same for the two
+files. Finally, the remaining blocks <i>M</i><sub><i>i</i>+2</sub>,
+..., <i>M</i><sub><i>n</i></sub> can again be chosen arbitrarily. 
+
+</p><p>
+
+So how can we use this technique to produce a pair of programs (or
+postscript files) that have identical MD5 hash, yet behave in
+arbitrary different ways? This is simple. All we have to do is write
+the two programs like this:
+
+</p><p>
+</p><pre><b>Program 1:</b> if (data1 == data1) then { good_program } else { evil_program }
+<b>Program 2:</b> if (data2 == data1) then { good_program } else { evil_program }
+</pre>
+<p>
+
+and arrange things so that "data1" = <font color="red"><i>M</i><sub><i>i</i></sub>,
+<i>M</i><sub><i>i</i>+1</sub></font> and "data2" = <font color="red"><i>N</i><sub><i>i</i></sub>,
+<i>N</i><sub><i>i</i>+1</sub></font> in the above scheme. This can
+even be done in a compiled program, by first compiling it with dummy
+values for data1 and data2, and later replacing them with the properly
+computed values.
+
+</p></td></tr></tbody></table>
+
+<h3>Do it yourself: the "evilize" library</h3>
+
+<table border="0"><tbody><tr><td width="10"></td><td>
+
+Here, you can download the software that I used to create
+MD5-colliding executable files.
+
+<ul>
+<li>Download: <a href="https://www.mscs.dal.ca/~selinger/md5collision/downloads/evilize-0.2.tar.gz">evilize-0.2.tar.gz</a>.
+</li></ul>
+
+This software is based on Patrick Stach's implementation of Wang and
+Yu's algorithm. You can find his original implementation <a href="http://www.stachliu.com/md5coll.c">here</a>. 
+
+<h4>Quick usage instructions:</h4>
+
+<p>
+
+Note for Windows users: the below instructions are for Unix/Linux. On
+Windows, you may have to append ".exe" to the names of executable
+files. Also, to use "make", you must have the GNU tools installed and
+working.
+
+</p><ol>
+<li>Unpack the archive and build the library and tools:
+<pre>    tar zxf evilize-0.2.tar.gz
+    cd evilize-0.2
+    make
+</pre>
+   This creates the programs "evilize", "md5coll", and the
+   object file "goodevil.o".
+
+</li><li> Create a C program with multiple behaviors. Instead of the usual
+   top-level function main(), write two separate top-level functions
+   main_good() and main_evil(). See the file hello-erase.c for a
+   simple example.
+
+</li><li> Compile your program and link against goodevil.o. For example:
+<pre>    gcc hello-erase.c goodevil.o -o hello-erase
+</pre>
+</li><li> Run the following command to create an initialization vector:
+<pre>    ./evilize hello-erase -i
+</pre>
+</li><li> Create an MD5 collision by running the following command (but
+   replace the vector on the command line with the one you found in
+   step 4):
+<pre>    ./md5coll 0x23d3e487 0x3e3ea619 0xc7bdd6fa 0x2d0271e7 &gt; init.txt
+</pre>
+   Note: this step can take several hours.
+</li><li>
+ Create a pair of good and evil programs by running:
+<pre>    ./evilize hello-erase -c init.txt -g good -e evil
+</pre>
+   Here "good" and "evil" are the names of the two programs generated,
+   and "hello-erase" is the name of the program you created in step 3. 
+
+<p>
+   NOTE: steps 4-6 can also be done in a single step, as follows:
+
+</p><pre>    ./evilize hello-erase -g good -e evil
+</pre>
+   However, I prefer to do the steps separately, since step 5 takes so
+   long. 
+
+</li><li> Check the MD5 checksums of the files "good" and "evil"; they should
+   be the same.
+
+</li><li> Run the programs "good" and "evil" - they should exhibit the two
+   different behaviors that you programmed in step 2. 
+</li></ol>
+
+</td></tr></tbody></table>
+
+<br clear="all">
+<br>
+Back to Peter Selinger's Homepage:
+<a href="http://www.mathstat.dal.ca/~selinger/">
+<img src="./md5-collision-demo_files/homebutton.gif" width="35" height="23" border="0" align="absmiddle" alt="[home]"></a>
+<hr width="100%"><!---------------------------------------------------------------->
+
+<center><address><nobr>
+<a href="http://www.mathstat.dal.ca/~selinger/">
+Peter Selinger</a> /<wbr> 
+ Department of Mathematics and Statistics /<wbr> 
+ Dalhousie University </nobr><br>
+ <a href="mailto:selinger@mathstat.dal.ca">selinger@mathstat.dal.ca</a>
+ / <a href="https://www.mscs.dal.ca/~selinger/gpg-key.txt">PGP key</a>
+</address></center>
+
+<!--#config timefmt="Updated %b %e, %Y" -->
+<font size="1"><!--#echo var="LAST_MODIFIED" --></font>
+</body></html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>More Cookies</title>
+
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="https://getbootstrap.com/docs/3.3/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="header">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                    <li role="presentation"><a href="/reset" class="btn btn-link pull-right">Reset</a>
+                    </li>
+                </ul>
+            </nav>
+            <h3 class="text-muted">More Cookies</h3>
+        </div>
+        
+        <!-- Categories: success (green), info (blue), warning (yellow), danger (red) -->
+        
+      
+      <div class="jumbotron">
+        <p class="lead"></p>
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12">
+				<h3>Welcome to my cookie search page. Only the admin can use it!</h3>
+			</div>
+		</div>
+		<br/>
+        <div class="login-form">
+		
+		</div>
+	</div>
+    <footer class="footer">
+        <p>&copy; PicoCTF</p>
+    </footer>
+
+</div>
+
+<script>
+$(document).ready(function(){
+    $(".close").click(function(){
+        $("myAlert").alert("close");
+    });
+});
+</script>
+</body>
+
+</html>

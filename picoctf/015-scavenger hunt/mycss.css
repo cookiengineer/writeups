@@ -1,0 +1,51 @@
+div.container {
+    width: 100%;
+}
+
+header {
+    background-color: black;
+    padding: 1em;
+    color: white;
+    clear: left;
+    text-align: center;
+}
+
+body {
+    font-family: Roboto;
+}
+
+h1 {
+    color: white;
+}
+
+p {
+    font-family: "Open Sans";
+}
+
+.tablink {
+    background-color: #555;
+    color: white;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    font-size: 17px;
+    width: 50%;
+}
+
+.tablink:hover {
+    background-color: #777;
+}
+
+.tabcontent {
+    color: #111;
+    display: none;
+    padding: 50px;
+    text-align: center;
+}
+
+#tabintro { background-color: #ccc; }
+#tababout { background-color: #ccc; }
+
+/* CSS makes the page look nice, and yes, it also has part of the flag. Here's part 2: h4ts_4_l0 */

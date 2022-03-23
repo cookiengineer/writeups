@@ -1,0 +1,10 @@
+{
+	"content-type": "text/html; charset=utf-8",
+	"content-length": "209",
+	"location": "http://mercury.picoctf.net:54219/",
+	"set-cookie": [
+		"name=-1; Path=/",
+		"session=eyJfZmxhc2hlcyI6W3siIHQiOlsiZGFuZ2VyIiwiVGhhdCBkb2Vzbid0IGFwcGVhciB0byBiZSBhIHZhbGlkIGNvb2tpZS4iXX1dfQ.YjHr2g.BSHDQi0Pd9IdY3XQMrXKt2nvsKE; HttpOnly; Path=/"
+	],
+	"vary": "Cookie"
+}

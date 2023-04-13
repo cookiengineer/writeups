@@ -37,7 +37,7 @@ const flip_bit = (buffer, bit_position) => {
 };
 
 
-const ENCRYPTED_COOKIE = Buffer.from('N1BOd1VJWEh0eldqZjFhM3NHQ2llaGJyN0JydW9pWUhRaC9iL05STHpxZVFTbkJrOWx4V0xnc2hzcXJCUXFZT0poWkR4TGYzSmJMZ0h6eTg1eXcvRUl6bEVDWEx6QmtNQkxpa2Z1M0ZYcC94dVQ2ejM3dWRxQVJnQXozZzlTWkY=', 'utf8');
+const ENCRYPTED_COOKIE = Buffer.from('OWQxdmgrdFU3a3REbW9USzRiUVg4RW80TnhISW1ISGpsNnpER2VXQ05mY2lkQXhwTHArS29jS0lvTlNab2RNUWljTGw2bzl5elQzckNKSGVya3pzL2hQNHNKaytMUW9RTC9WclA1b09peXVkejRZd2JlUzVnSldPWC9zRk45akU=', 'utf8');
 
 const attack = (bit) => {
 
@@ -47,7 +47,7 @@ const attack = (bit) => {
 
 	let request = http.request('http://mercury.picoctf.net:21553', {
 		headers: {
-			'Cookie':  'name=0; auth_name=' + cookie,
+			'Cookie':  'auth_name=' + cookie + ';',
 			'Host':    'mercury.picoctf.net:21553',
 			'Referer': 'http://mercury.picoctf.net:21553/'
 		},
@@ -62,8 +62,50 @@ const attack = (bit) => {
 			let payload = Buffer.concat(chunks);
 			let headers = Buffer.from(JSON.stringify(response.headers, null, '\t'), 'utf8');
 
-			fs.writeFileSync('cookies/' + bit + '.payload', payload);
-			fs.writeFileSync('cookies/' + bit + '.headers', headers);
+			let html = payload.toString('utf8');
+			if (html.includes('Cannot decode cookie.') === true) {
+				// Ignore
+			} else if (html.includes('Redirecting...') === true) {
+
+				if (response.headers['location'].endsWith('/flag') === true) {
+
+					let request_flag = http.request(response.headers['location'], {
+						headers: {
+							'Cookie':  'auth_name=' + cookie + ';',
+							'Host':    'mercury.picoctf.net:21553',
+							'Referer': 'http://mercury.picoctf.net:21553/'
+						},
+						method: 'GET'
+					}, (response_flag) => {
+
+						const chunks_flag = [];
+
+						response_flag.on('data', (data) => chunks_flag.push(data));
+						response_flag.on('end', () => {
+
+							let html = Buffer.concat(chunks_flag).toString('utf8');
+
+							if (html.includes('<code>picoCTF') === true) {
+
+								let flag = html.split('<code>')[1].split('</code>')[0];
+								console.log('YAAAY! the flip of bit #' + bit + ' resulted in flag "' + flag + '"');
+
+							}
+
+							fs.writeFileSync('cookies/flag.html', Buffer.concat(chunks_flag));
+
+						});
+
+					});
+
+					request_flag.end();
+
+				}
+
+			}
+
+			fs.writeFileSync('cookies/bit-' + bit + '.html', payload);
+			fs.writeFileSync('cookies/bit-' + bit + '.headers', headers);
 
 		});
 
@@ -76,7 +118,6 @@ const attack = (bit) => {
 	request.end();
 
 };
-
 
 for (let b = 0; b < 128; b++) {
 	attack(b);

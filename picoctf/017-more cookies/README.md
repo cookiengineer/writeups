@@ -17,15 +17,14 @@ decrypted plaintext.
 # Solution
 
 I first tried to implement it in node.js via the `bruteforce.mjs`
-script, but somehow I messed it up and crashed the server :(
+script, but somehow I messed it up and crashed the server after
+a bunch of requests. So be careful not to run it too often :(
 
 
 1. Decode the base64 encoded cookie
 2. Decode the base64 encoded cookie again (yeah, so safe)
-3. For the first 128 bits (assuming CBC 128 bit key length) flip each bit, double-encode the cookie again and do a request with the spoofed cookie.
-
-
-Currently I'm not sure whether the script still crashes the server,
-but while the server restarted I reimplemented it via the
-`bruteforce.py` script which eventually worked and got me the flag.
+3. For the first 128 bits (assuming CBC 128 bit key length) flip each bit.
+4. Encode the spoofed cookie via base64.
+5. Encode the spoofed cookie again via base64.
+6. Send the spoofed cookie to the server, which will behave differently (with a redirect) in case of success.
 

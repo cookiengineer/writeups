@@ -1,0 +1,509 @@
+/*--------------------------------------------------------------------- File Name: style.css ---------------------------------------------------------------------*/
+/*--------------------------------------------------------------------- import Fonts ---------------------------------------------------------------------*/
+ @import url('../../fonts.googleapis.com/css%3Ffamily=Rajdhani:300,400,500,600,700.css');
+ @import url('../../fonts.googleapis.com/css%3Ffamily=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i.css');
+ @import url('../../fonts.googleapis.com/css%3Ffamily=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i.css');
+/*--------------------------------------------------------------------- basic ---------------------------------------------------------------------*/
+ body {
+     color: #666666;
+     font-size: 14px;
+     font-family: 'Roboto';
+     line-height: 1.80857;
+     font-weight: normal;
+}
+ html {
+     scroll-behavior: smooth;
+}
+
+ button:focus {
+     outline: none;
+}
+ ul, li, ol {
+     margin: 0px;
+     padding: 0px;
+     list-style: none;
+}
+ p {
+     margin: 0px;
+     font-weight: 300;
+     font-size: 15px;
+     line-height: 24px;
+}
+ a {
+     color: #222222;
+     text-decoration: none;
+     outline: none !important;
+}
+ a, .btn {
+     text-decoration: none !important;
+     outline: none !important;
+     -webkit-transition: all .3s ease-in-out;
+     -moz-transition: all .3s ease-in-out;
+     -ms-transition: all .3s ease-in-out;
+     -o-transition: all .3s ease-in-out;
+     transition: all .3s ease-in-out;
+}
+ img {
+     max-width: 100%;
+     height: auto;
+}
+ :focus {
+     outline: 0;
+}
+ .btn-custom {
+     margin-top: 20px;
+     background-color: transparent !important;
+     border: 2px solid #ddd;
+     padding: 12px 40px;
+     font-size: 16px;
+}
+ .lead {
+     font-size: 18px;
+     line-height: 30px;
+     color: #767676;
+     margin: 0;
+     padding: 0;
+}
+ .form-control:focus {
+     border-color: #ffffff !important;
+     box-shadow: 0 0 0 .2rem rgba(255, 255, 255, .25);
+}
+ .navbar-form input {
+     border: none !important;
+}
+ .badge {
+     font-weight: 500;
+}
+ blockquote {
+     margin: 20px 0 20px;
+     padding: 30px;
+}
+ button {
+     border: 0;
+     margin: 0;
+     padding: 0;
+     cursor: pointer;
+}
+ .full {
+     float: left;
+     width: 100%;
+}
+ .layout_padding {
+     padding-top: 90px;
+     padding-bottom: 90px;
+}
+ .layout_padding_2 {
+     padding-top: 75px;
+     padding-bottom: 75px;
+}
+ .light_silver {
+     background: #f9f9f9;
+}
+ .theme_bg {
+     background: #38c8a8;
+}
+ .margin_top_30 {
+     margin-top: 30px !important;
+}
+ .full {
+     width: 100%;
+     float: left;
+     margin: 0;
+     padding: 0;
+}
+/**-- heading section --**/
+ .main_heading {
+     text-align: center;
+     display: flex;
+     justify-content: center;
+     position: relative;
+     margin-bottom: 50px;
+}
+ .main_heading h2 {
+     padding: 0;
+     font-size: 48px;
+     line-height: 60px;
+     font-weight: 400;
+     position: relative;
+     letter-spacing: -0.5px;
+     color: #114c7d;
+     border-left: solid #38c8a8 10px;
+     padding-left: 15px;
+}
+ .main_heading h2 strong {
+     background: #38c8a8;
+     color: #fff;
+     font-weight: 600;
+     padding: 0 15px;
+     line-height: 68px;
+}
+ .white_heading_main h2 {
+     color: #fff;
+}
+ .small_main_heading {
+     margin-top: 25px;
+     float: left;
+     width: 100%;
+     border-bottom: solid rgba(0, 0, 0, 0.07) 1px;
+     margin-bottom: 25px;
+}
+ .small_main_heading h2 {
+     padding: 2px 0 20px 0;
+     color: #114c7d;
+     font-weight: 400;
+     font-size: 28px;
+     background-image: url('http://saturn.picoctf.net:53295/images/fevicon.png');
+     background-repeat: no-repeat;
+     padding-left: 55px;
+     letter-spacing: -0.5px;
+}
+ .small_main_heading h2 strong {
+     color: #38c8a8;
+     font-weight: 600;
+}
+ .main_bt {
+     background: #38c8a8;
+     color: #fff;
+     padding: 8px 25px 8px 20px;
+     float: left;
+     font-size: 15px;
+     font-weight: 300;
+     border-left: solid #114c7d 5px;
+     border-radius: 0;
+}
+ a.readmore_bt {
+     color: #fff;
+     font-weight: 300;
+     text-decoration: underline !important;
+}
+ .main_bt:hover, .main_bt:focus {
+     background: #114c7d;
+     border-left: solid #38c8a8 5px;
+     color: #fff;
+}
+ .margin_top_50 {
+     margin-top: 50px;
+}
+ .margin_bottom_30_all {
+     margin-bottom: 30px;
+}
+ .text_align_center {
+     text-align: center;
+}
+/*---------------------------- preloader area ----------------------------*/
+ .loader_bg {
+     position: fixed;
+     z-index: 9999999;
+     background: #fff;
+     width: 100%;
+     height: 100%;
+}
+ .loader {
+     height: 100%;
+     width: 100%;
+     position: absolute;
+     left: 0;
+     top: 0;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+}
+ .loader img {
+     width: 280px;
+}
+/*--------------------------------------------------------------------- header ---------------------------------------------------------------------*/
+ header {
+     min-height: 90px;
+     background: transparent;
+     padding-top: 15px;
+     position: absolute;
+     width: 100%;
+     top: 0;
+     left: 0;
+     z-index: 998;
+}
+ header .container-fluid {
+     max-width: 1850px;
+}
+ .right_header_info {
+     width: 100%;
+     float: left;
+     padding: 20px 0 0;
+}
+ .right_header_info ul {
+     list-style: none;
+     padding: 0;
+     margin: 0;
+     float: right;
+}
+ .right_header_info ul li {
+     display: inline;
+     font-size: 16px;
+     margin-left: 45px;
+     color: #eaeaea;
+     font-weight: 400;
+     float: left;
+}
+ .right_header_info ul li a {
+     color: #eaeaea;
+     font-weight: 300;
+}
+ .button_user a {
+     float: left;
+     min-width: 75px;
+     height: 35px;
+     text-align: center;
+     line-height: 35px;
+     position: relative;
+     top: -3px;
+     padding: 0 15px;
+     margin: 0 2px;
+}
+ .button_user a {
+     float: left;
+     min-width: 75px;
+     height: 40px;
+     text-align: center;
+     line-height: 38px;
+     position: relative;
+     top: -7px;
+     padding: 0 15px;
+     margin: 0 2px;
+     border: solid #eaeaea 1px;
+}
+ .button_user a:hover, .button_user a:focus, .button_user a.active {
+     background: #e3d105;
+     color: #fff;
+     border-color: #e3d105;
+     color: #222;
+}
+ #sidebarCollapse {
+     background: transparent;
+}
+ .slider_section {
+     min-height: 100vh;
+     padding-bottom: 100px;
+}
+ .contact_nu {
+    float: right;
+}
+/** menu section **/
+ .head-top {
+     padding-bottom: 20px;
+}
+ .email {
+     padding-top: 31px;
+}
+ .email a {
+    font-size: 16px;
+}
+ .email a:hover {
+     color: #000;
+}
+ .email img {
+    padding-right: 10px;
+}
+ .contact_nu {
+     padding-top: 31px;
+}
+ .contact_nu a {
+    font-size: 16px;
+}
+ .contact_nu a:hover {
+     color: #000;
+}
+ .contact_nu img {
+    padding-right: 10px;
+}
+ .bg {
+    background-color: #5ab337d6;
+}
+
+ .navbar-expand-md .navbar-nav .nav-link {
+     padding: 15px 48px;
+     font-size: 16px;
+     color: #000;
+     line-height: 18px;
+}
+/** banner_main picoCTF{1nsp3ti0n_0f_w3bpag3s_8de925a7} **/
+ .carousel-indicators li {
+     width: 20px;
+     height: 20px;
+     border-radius: 11px;
+     background-color: #070000;
+}
+ .carousel-indicators li.active {
+    background-color: #35a30a;
+}
+ .carousel-indicators {
+     left: inherit;
+     top: 53%;
+     width: 20px;
+     display: block;
+}
+ .carousel-indicators li {
+     margin: 8px 0;
+}
+ .banner_main {
+     position: relative;
+}
+ .relative {
+    position: absolute;
+     top: 50%;
+     transform: translateY(-50%);
+     bottom: auto;
+     text-align: left;
+}
+ .banner_main .carousel-caption h1 {
+    color:#35a30a;
+     font-size: 124px;
+     line-height: 120px;
+     font-weight: 500;
+     padding-bottom: 85px;
+}
+ .dark_brown {
+    color: #000000;
+     font-weight: 500;
+}
+ .banner_main .carousel-caption a {
+    display: block;
+     background: #fff;
+     color: #050000;
+     max-width: 230px;
+     padding: 12px 0px;
+     width: 100%;
+     font-size: 18px;
+     text-align: center;
+     text-transform: uppercase;
+     font-weight: 500;
+     border: #35a30a solid 1px;
+}
+ .banner_main .carousel-caption a:hover {
+     background: #58c62c;
+     color: #fff;
+}
+ .carousel-control-prev-icon {
+    display: none;
+}
+ .carousel-control-next-icon {
+    display: none;
+}
+ .banner_main .carousel-item img {
+    width: 100%;
+}
+ .slider_section {
+     min-height: inherit;
+}
+
+
+ .title {
+     text-align: center;
+     padding-bottom: 60px;
+}
+ .title h2 {
+     font-size: 60px;
+     font-weight: normal;
+     line-height: 46px;
+     color: #58c62c;
+     padding-bottom: 20px;
+}
+
+/** contact **/
+ .black {
+     color: #000;
+     font-weight: normal;
+}
+ .contact {
+     margin-top: 90px;
+}
+ .contact .title {
+     padding-bottom: 60px;
+     text-align: left;
+}
+ .contact .title h2 {
+     font-size: 60px;
+     font-weight: normal;
+     line-height: 46px;
+     color: #58c62c;
+     padding: 0;
+}
+ #map {
+     height: 100%;
+     min-height: 480px;
+}
+ .main_form {
+     background: #13240c;
+     padding: 40px 63px;
+     padding-left: 224px;
+}
+ .form-control {
+     border-radius: inherit;
+     margin-bottom: 20px;
+     padding: 8px 2px;
+     background: transparent;
+     border-bottom: #fff solid 1px !important;
+     border: transparent;
+}
+ .form-control:focus {
+     box-shadow: inherit;
+     background: transparent;
+     border-bottom: #fff solid 1px !important;
+}
+ .textarea {
+     background: transparent;
+     border-bottom: #fff solid 1px !important;
+     border: transparent;
+     padding-top: 6px;
+     width: 100%;
+     color: #fff;
+     opacity: 1;
+}
+ .send {
+     font-family: poppins;
+     float: right;
+     margin: 0 auto;
+     display: block;
+     background: #fff;
+     color: #000;
+     max-width: 120px;
+     padding: 6px 0px;
+     width: 100%;
+     font-size: 18px;
+     margin-top: 20px 
+}
+ .send:hover {
+     background: #35a30a ;
+     color: #fff;
+}
+ .padddd {
+    padding-left: 0px;
+     padding-right: 0;
+}
+ .map_section {
+     height: 100%;
+}
+ .padding {
+    padding-right: 0px;
+     padding-left: 0;
+}
+
+/** end contact **/
+/** footer **/
+ .copyright {
+     background: #317914;
+}
+ .copyright p {
+     color: #fff;
+     text-align: center;
+     padding: 25px 0px;
+     font-size: 17px;
+}
+ .copyright a {
+     color: #fff;
+}
+ .copyright a:hover {
+     color: #000;
+}
+/** end footer **/
+/*--------------------------------------------------------------------- ener page css ---------------------------------------------------------------------*/
+ 

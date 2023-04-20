@@ -15,6 +15,6 @@ process.
 
 ## Unsolved Challenges
 
-- [More Cookies](./017-more cookies): The initial `bruteforce.mjs` still crashes the server, but the `bruteforce.py` implementation works.
 - [Notepad](./026-notepad): Currently no idea how to start.
+- [Super Serial](./036-super serial): Currently no idea how to start.
 

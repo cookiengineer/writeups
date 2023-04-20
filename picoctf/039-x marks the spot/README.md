@@ -49,9 +49,9 @@ query that compares the password length. If the password length is longer than t
 compares against, we get a response of failure.
 
 Initially I tried out the length of `30` for the sake of tryout, and in the resulting
-`users.json` there were two user ids missing, which implied that they had a longer password.
+`password-lengths.json` there were two user ids missing, which implied that they had a longer password.
 When trying it out with a maximum length of `64`, all user ids appeared and they were
-appearing in the resulting `users.json` database.
+appearing in the resulting `password-lengths.json` database.
 
 ```bash
 node bruteforce-password-lengths.mjs;
@@ -64,7 +64,7 @@ vim password-lengths.json;
 ## Round 2: Bruteforce usernames
 
 In Round 1 we found out that there are 3 possibly valid user ids, each with their own
-password length represented in the `users.json`.
+password length represented in the `password-lengths.json`.
 
 Now it's time to found out the usernames. We craft an XPath injection that compares the
 text value of the `<name>` element in the XML with the bruteforced username(s).

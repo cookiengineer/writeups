@@ -15,6 +15,5 @@ process.
 
 ## Unsolved Challenges
 
-- [Notepad](./026-notepad): Currently no idea how to start.
 - [Super Serial](./036-super serial): Currently no idea how to start.
 

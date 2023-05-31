@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<script defer>
+	(async () => {
+		await fetch("./ZoRd23o0wd").then((response) => {
+			return response.arrayBuffer();
+		}).then((blob) => {
+
+			let imports = {};
+			window.IMPORTS = imports;
+
+			WebAssembly.instantiate(blob, imports).then((result) => {
+				console.log(result);
+			});
+
+		});
+
+		// let global = await WebAssembly(response.body);
+
+        // .then(bytes => WebAssembly.instantiate(bytes, imports));
+
+		// console.log(await response.arrayBuffer());
+		// console.log(response);
+	})();
+</script>
+

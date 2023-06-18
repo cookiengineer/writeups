@@ -1,0 +1,31 @@
+body{
+    padding: 1rem;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 1.2rem;
+}
+
+input {
+    height: 1.5rem;
+    font-size: 1.2rem;
+}
+
+input[type='text']{
+    min-width: 220px;
+}
+
+button {
+    height: 1.8rem;
+    line-height: 1.8rem;
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+.output-container {
+    margin-top: 2rem;
+}
+
+.blue {
+    color: blue;
+}

@@ -1,0 +1,8 @@
+Website = "https://cookie.engineer/index.html"
+
+[Details]
+Icon = "asset/icon.png"
+Name = "Fyne Test App"
+ID = "engineer.cookie.test"
+Version = "1.0.0"
+Build = 1

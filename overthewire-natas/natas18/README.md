@@ -16,3 +16,16 @@ very feasible to hijack other sessions.
 
 # Solution
 
+The weak session identifier allows us to hijack and iterate over the session ids,
+and setting the `Cookie` HTTP header to gain access to another session that's
+already running and actively used by another user.
+
+In our case, the session `119` was logged in with the `admin` user. The
+implementation detects that session successfully.
+
+```bash
+cd ./solution;
+
+go run main.go;
+```
+

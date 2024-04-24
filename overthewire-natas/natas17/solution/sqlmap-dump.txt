@@ -1,0 +1,7 @@
++----------------------------------+----------+
+| password                         | username |
++----------------------------------+----------+
+| 0xjsNNjGvHkb7pwgC6PrAyLNT0pYCqHd | user1    |
+| 8NEDUUxg8kFgPV84uLwvZkGn6okJQ6aq | natas18  |
+| MeYdu6MbjewqcokG0kD4LrSsUZtfxOQ2 | user2    |
++----------------------------------+----------+

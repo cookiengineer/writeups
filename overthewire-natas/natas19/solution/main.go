@@ -69,6 +69,7 @@ func main() {
 		if result != "" {
 			fmt.Println("Password is \"" + result + "\"")
 			os.WriteFile("./sessions/" + strconv.FormatInt(int64(id), 10) + "-admin.txt", []byte(result), 0666)
+			break
 		}
 
 	}

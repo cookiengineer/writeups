@@ -36,8 +36,8 @@ self-written password cracker, or johntheripper.
 cd ./solution;
 
 # Option 1: Crack the password with my own tool
-wget https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt -O ./cmds/crack-dictionary/passwords.txt;
-go run ./cmds/crack-dictionary/main.go ../geheim.zip;
+wget https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt -O ./cmds/bruteforce-zip/passwords.txt;
+go run ./cmds/bruteforce-zip/main.go ../geheim.zip;
 
 # Option 2: Crack the password with johntheripper
 zip2john geheim.zip > zip_hashes.txt;
@@ -62,14 +62,4 @@ cd ./solution;
 # Find potential master keys in the memory dump
 go run ./cmds/find-keypass-masterkey.go ../challenge/KeePass.DMP;
 ```
-
-
-## Solution
-
-Hashes of the cracked/bruteforced/recovered passwords, all generated via `sha512sum` to prove
-that they were recovered and hashed again:
-
-Decrypted ZIP file password: `1b52f373a7324b8c344928b997874a9fb5a174cebc841b53a42ce2a0f872cb0d10066a1cc1ec3566ef030ba654af5db25d6341d95404a8615ff9529f1fcaa604`
-Unpacked KeePass file password: `b99b89217dad01a5992247a220f5226716dca14c813d8516095cd23240f2ce345fd22883ed4358c441e643e8e98fa09e37ebaec6285ef22e569b6633f263e7a1`
-Hash of Final password to submit: `8695447c00858cdb3c0614727963135c0d28abbc9a0c938885dcbd569582b921b6ba1bc876714153ae116d0b84085593297456b5269f465fc282d749d619a64f`
 

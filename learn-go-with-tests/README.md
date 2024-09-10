@@ -19,8 +19,8 @@ Each of the articles are sorted in their order in the tutorial:
 10. [Concurrency](./concurrency)
 11. [Selects](./selects)
 12. [Reflection](./reflection)
-13. Sync
-14. Context
+13. [Sync](./sync)
+14. [Context](./context)
 15. Property-based testing
 16. Maths
 17. Reading Files

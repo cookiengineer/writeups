@@ -1,0 +1,4 @@
+#!/bin/bash
+
+john --format=RAW-MD5 --mask="?1?1?1?1?1?1?1?1" --1="?u?l?d" --fork=16 hashes.txt;
+

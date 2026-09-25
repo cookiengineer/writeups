@@ -1,0 +1,9 @@
+
+podman exec -it securenotes_mysql_1 mysql -u ctf -pctf ctf;
+
+> SET GLOBAL general_log_file = "/var/lib/mysql-files/pwned.sql";
+> SET GLOBAL general_log = ON;
+> SELECT "testasd";
+
+podman exec -it securenotes_mysql_1 cat /var/lib/mysql-files/pwned.sql;
+

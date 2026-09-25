@@ -1,0 +1,5 @@
+services:
+  baby-pwn:
+    build: ./baby-pwn
+    ports:
+      - "1337:1337/TCP"

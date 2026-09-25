@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+  <head><meta charset="utf-8"><title>Search</title></head>
+  <body>
+    <h2>Search</h2>
+    {% if error %}<p style="color:red">{{ error }}</p>{% endif %}
+    <form method="POST" action="/search">
+      <label>Title (exact)</label><br>
+      <input name="title"><br><br>
+
+      <label>Tag (exact)</label><br>
+      <input name="tag"><br><br>
+
+      <button type="submit">Search</button>
+    </form>
+
+    <hr>
+    {% if rows is not none %}
+      <h3>Results</h3>
+      {% if rows|length == 0 %}
+        <p><i>No results</i></p>
+      {% else %}
+        <ul>
+          {% for r in rows %}
+            <li><a href="/note/{{ r[0] }}">{{ r[1] }}</a> (tag: {{ r[2] }})</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endif %}
+
+    <p><a href="/home">Back</a></p>
+  </body>
+</html>

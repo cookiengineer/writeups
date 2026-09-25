@@ -1,0 +1,18 @@
+version: "3.9"
+services:
+  asterisk:
+    build: ./asterisk
+    hostname: asterisk
+    expose:
+      - "5038"   # AMI
+      - "5060"   # SIP if needed
+
+  shell-phone:
+    build: ./shell-phone
+    ports:
+      - "8080:8080/tcp"   # Web UI
+    environment:
+      - ASTERISK=asterisk
+      - USERNAME=admin
+      - PASSWORD=StrongPasswordHere
+      - ASTERISK_PORT=5038

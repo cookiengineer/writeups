@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>One Million Presses</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #101218;
+      --panel: #1a1f2b;
+      --muted: #96a0b8;
+      --text: #eef2ff;
+      --accent: #6ea8fe;
+      --accent-2: #7ee787;
+      --danger: #ff7b72;
+      --border: #2f3a52;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background: radial-gradient(circle at top, #1a2236 0%, var(--bg) 50%);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, sans-serif;
+      color: var(--text);
+    }
+    .card {
+      width: min(92vw, 520px);
+      background: rgba(26, 31, 43, 0.95);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+    }
+    h1 {
+      margin: 0 0 10px;
+      font-size: 1.8rem;
+    }
+    p {
+      margin: 0 0 18px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .counter {
+      font-size: 2.8rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      margin: 12px 0 16px;
+    }
+    .bar {
+      height: 14px;
+      border-radius: 999px;
+      background: #0e1320;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      margin-bottom: 18px;
+    }
+    .fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      transition: width 120ms ease-out;
+    }
+    button {
+      width: 100%;
+      border: 0;
+      border-radius: 14px;
+      padding: 16px 20px;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #0d1117;
+      background: linear-gradient(180deg, #9cc2ff 0%, var(--accent) 100%);
+      cursor: pointer;
+      transition: transform 80ms ease-out;
+    }
+    button:active { transform: scale(0.985); }
+    .hint {
+      margin-top: 14px;
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+    .flag {
+      margin-top: 18px;
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: #0e1320;
+      border: 1px solid var(--border);
+      display: none;
+      white-space: pre-wrap;
+      word-break: break-word;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+    .flag.show { display: block; }
+    .status {
+      margin-top: 12px;
+      min-height: 1.5em;
+      color: var(--danger);
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>Ten Million Clicks</h1>
+    <p>Press the button until the counter reaches exactly <strong>10,000,000</strong>. Then the flag will be revealed.</p>
+
+    <div id="counter" class="counter">0</div>
+    <div class="bar"><div id="fill" class="fill"></div></div>
+
+    <button id="pressBtn" type="button">Press me</button>
+    <div id="status" class="status"></div>
+    <div id="flag" class="flag"></div>
+  </main>
+
+  <script src="challenge.js"></script>
+  <script>
+    const counterEl = document.getElementById('counter');
+    const fillEl = document.getElementById('fill');
+    const pressBtn = document.getElementById('pressBtn');
+    const statusEl = document.getElementById('status');
+    const flagEl = document.getElementById('flag');
+
+    function readCString(memory, ptr) {
+      const bytes = new Uint8Array(memory.buffer);
+      let out = '';
+      for (let i = ptr; bytes[i] !== 0; i++) {
+        out += String.fromCharCode(bytes[i]);
+      }
+      return out;
+    }
+
+    function updateUi(count) {
+      counterEl.textContent = count.toLocaleString('en-US');
+      fillEl.style.width = `${Math.min((count / 10000000) * 100, 100)}%`;
+    }
+
+    async function main() {
+
+      updateUi(WASM.get_counter());
+
+      pressBtn.addEventListener('click', () => {
+        const count = WASM.press_button();
+        updateUi(count);
+
+		const ok = WASM.decrypt_flag();
+		const flag = readCString(WASM.memory, WASM.get_flag_ptr());
+		  console.log(flag);
+		flagEl.textContent = flag;
+		flagEl.classList.add('show');
+		statusEl.textContent = 'Challenge complete.';
+		pressBtn.disabled = true;
+      });
+    }
+
+    main().catch((err) => {
+      console.error(err);
+      statusEl.textContent = 'Failed to load challenge.wasm. Serve this directory over HTTP.';
+    });
+  </script>
+</body>
+</html>

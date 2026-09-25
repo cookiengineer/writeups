@@ -1,0 +1,5 @@
+services:
+  wasome:
+    build: wasome
+    ports:
+      - "8080:80/HTTP"

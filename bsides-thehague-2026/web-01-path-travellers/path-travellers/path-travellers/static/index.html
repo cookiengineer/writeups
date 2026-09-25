@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Path Travellers | Mountaineering Club</title>
+    <script src="/static/tailwind.js"></script>
+</head>
+<body class="bg-stone-50 text-stone-900 font-sans">
+
+<header class="relative h-96 flex items-center justify-center text-white">
+    <img src="/static/forest.jpg"
+         alt="Majestic Mountains" class="absolute inset-0 w-full h-full object-cover brightness-50">
+    <div class="relative z-10 text-center">
+        <h1 class="text-5xl font-bold tracking-tight">THE PATH TRAVELLERS</h1>
+        <p class="mt-4 text-xl italic">"Exploring every depth of the directory... "</p>
+    </div>
+</header>
+
+<main class="max-w-6xl mx-auto px-6 py-12">
+
+    <section class="grid md:grid-cols-2 gap-12 items-center mb-20">
+        <div>
+            <h2 class="text-3xl font-bold mb-4 border-b-4 border-green-700 inline-block">Our Mission</h2>
+            <p class="text-lg leading-relaxed text-stone-700">
+                Founded in 1992, the Path Travellers are dedicated to traversing the most obscure routes in the Pacific Northwest.
+                Whether it's a winding pine forest or a steep ridge, we believe no path should remain hidden.
+            </p>
+        </div>
+        <img src="/static/creek.jpg"
+             alt="Pine Trees" class="rounded-lg shadow-xl">
+    </section>
+
+    <section>
+        <h2 class="text-3xl font-bold mb-8 text-center">Adventure Logs</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-white p-4 shadow-md rounded border border-stone-200">
+                <img src="/static/mountain_peak.avif" alt="Mountain Peak" class="w-full h-48 object-cover mb-4 bg-stone-200">
+                <a href="/recommendations?path=summit.html"><h3 class="font-bold">The Summit Ridge</h3></a>
+                <p class="text-sm text-stone-500">Route: /root/peaks/summit</p>
+            </div>
+
+            <div class="bg-white p-4 shadow-md rounded border border-stone-200">
+                <img src="/static/forest_path.avif" alt="Forest Path" class="w-full h-48 object-cover mb-4 bg-stone-200">
+                <a href="/recommendations?path=traverse.html"><h3 class="font-bold">Pine Needle Pass</h3></a>
+                <p class="text-sm text-stone-500">Route: /forest/traverse</p>
+            </div>
+
+            <div class="bg-white p-4 shadow-md rounded border border-stone-200">
+                <img src="/static/hidden_valley.avif" alt="Hidden Valley" class="w-full h-48 object-cover mb-4 bg-stone-200">
+                <a href="/recommendations?path=landscapes.html"><h3 class="font-bold">The Hidden Directory</h3></a>
+                <p class="text-sm text-stone-500">Route: /etc/landscapes</p>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="bg-stone-800 text-stone-400 py-8 text-center mt-12">
+    <p>&copy; 2026 Path Travellers Mountaineering Club. All rights reserved.</p>
+    <p class="text-xs mt-2 opacity-50 italic underline"></p>
+</footer>
+
+</body>
+</html>

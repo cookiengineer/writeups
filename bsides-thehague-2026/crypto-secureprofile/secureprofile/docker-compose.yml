@@ -1,0 +1,6 @@
+services:
+  secure-profile:
+    build: ./secure-profile
+    ports:
+      - "3000:3000/HTTP"
+      

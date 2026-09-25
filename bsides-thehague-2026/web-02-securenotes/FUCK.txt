@@ -1,0 +1,5 @@
+query = f"SELECT id, owner, title FROM notes WHERE owner = %s AND (title = '{title}' OR tag = '{tag}');"
+
+
+secret OR owner=CHAR(97,100,109,105,110)
+

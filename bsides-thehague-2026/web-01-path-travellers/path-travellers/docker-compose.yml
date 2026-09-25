@@ -1,0 +1,5 @@
+services:
+  path-travellers:
+    build: ./path-travellers
+    ports:
+      - "5000:5000/HTTP"

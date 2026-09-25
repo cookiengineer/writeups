@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer Docs | Shell Phone</title>
+    <script src="/static/tailwind.js"></script>
+    <link href="/static/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-white text-slate-800 font-sans flex">
+
+<aside class="w-64 h-screen bg-slate-50 border-r border-slate-200 sticky top-0 hidden md:block">
+    <div class="p-6">
+        <div class="text-2xl font-bold text-cyan-700 flex items-center gap-2">
+            <span>🐚</span> Shell Docs
+        </div>
+    </div>
+    <nav class="px-4 space-y-1">
+        <a href="#" class="block px-3 py-2 text-cyan-700 bg-cyan-50 rounded-md font-medium">Quick Start</a>
+        <div class="pt-4 pb-2 px-3 text-xs font-semibold text-slate-400 uppercase tracking-wider">Fundamentals</div>
+        <a href="#" class="block px-3 py-2 text-slate-600 hover:bg-slate-100 rounded-md">Authentication</a>
+        <a href="#" class="block px-3 py-2 text-slate-600 hover:bg-slate-100 rounded-md">Webhooks</a>
+    </nav>
+</aside>
+
+<main class="flex-1 max-w-4xl px-8 py-12 lg:px-16">
+
+    <nav class="text-sm text-slate-500 mb-8">
+        Documentation / <span class="text-slate-800">Quick Start</span>
+    </nav>
+
+    <header class="mb-12 border-b border-slate-100 pb-8">
+        <h1 class="text-4xl font-extrabold text-slate-900 mb-4">Developer Documentation</h1>
+        <p class="text-xl text-slate-600 leading-relaxed">
+            Welcome to the official documentation for the Shell Phone API. 100% roest compatible
+        </p>
+    </header>
+
+    <section class="mb-16">
+        <h2 class="text-2xl font-bold text-slate-900 mb-4 flex items-center gap-2">
+            <i class="fas fa-rocket text-cyan-600"></i> Quick Start Guide
+        </h2>
+        <p class="mb-6 text-slate-600">
+            no need for an SDK just curl our api directly
+        </p>
+        <div class="bg-slate-900 rounded-lg p-4 shadow-inner">
+            <div class="flex items-center justify-between mb-2 border-b border-slate-700 pb-2">
+                <span class="text-xs font-mono text-slate-400 uppercase">Terminal</span>
+                <button class="text-slate-500 hover:text-white transition"><i class="far fa-copy"></i></button>
+            </div>
+            <code class="text-cyan-400 font-mono text-sm leading-6">
+                $ curl -k https://&lt;voip-instance&gt;/api/dial -d number=+31...
+            </code>
+        </div>
+    </section>
+
+
+    <section class="mb-16">
+        <h2 class="text-2xl font-bold text-slate-900 mb-4">📡 API Authentication</h2>
+        <p class="text-slate-600 leading-relaxed">
+            coming soon ....
+        </p>
+    </section>
+
+    <section class="mb-16">
+        <h2 class="text-2xl font-bold text-slate-900 mb-4">⚓ Webhooks</h2>
+        <p class="text-slate-600 leading-relaxed">
+            make sure to run your own host for the webhook!

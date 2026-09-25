@@ -1,0 +1,24 @@
+services:
+  secure-notes:
+    build: ./secure-notes
+    ports:
+      - "3000:3000/tcp"
+    environment:
+      - MYSQL_HOST=mysql
+      - MYSQL_PORT=3306
+      - MYSQL_USER=ctf
+      - MYSQL_PASSWORD=ctf
+      - MYSQL_DATABASE=ctf
+      - MYSQL_ROOT_USER=root
+      - MYSQL_ROOT_PASSWORD=root
+  mysql:
+    image: docker.io/library/mysql:8.4
+    hostname: mysql
+    expose:
+      - "3306/tcp"
+    environment:
+      MYSQL_USER: ctf
+      MYSQL_PASSWORD: ctf
+      MYSQL_DATABASE: ctf
+      MYSQL_ROOT_PASSWORD: root
+      

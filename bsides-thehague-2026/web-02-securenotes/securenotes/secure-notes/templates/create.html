@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+  <head><meta charset="utf-8"><title>Create Note</title></head>
+  <body>
+    <h2>Create note</h2>
+    {% if error %}<p style="color:red">{{ error }}</p>{% endif %}
+    <form method="POST" action="/create">
+      <label>Title</label><br>
+      <input name="title" maxlength="80"><br><br>
+
+      <label>Tag</label><br>
+      <input name="tag" value="general" maxlength="32"><br><br>
+
+      <label>Body</label><br>
+      <textarea name="body" rows="6" cols="60" maxlength="500"></textarea><br><br>
+
+      <button type="submit">Create</button>
+    </form>
+    <p><a href="/home">Back</a></p>
+    <p><small>Note: creation may take a few seconds.</small></p>
+  </body>
+</html>
